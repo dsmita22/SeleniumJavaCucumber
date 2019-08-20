@@ -19,7 +19,11 @@ $ gradle task SecurePayTests
 | [TestNg](https://testng.org/doc/)                                                 | Test runner often used for parallel test runs                    |
 | [Log4j](https://logging.apache.org/log4j/2.x/)                                    | Java logging library                                             |
 
-### Test Results  
-<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Report.png" width="400">
-<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Feature.png" width="400">
-<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Steps.png" width="400">
+### Test Results
+  
+* Report    
+<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Report.png" width="400">   
+* Feature   
+<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Feature.png" width="400">   
+* Steps   
+<img src="https://raw.githubusercontent.com/dsmita22/SeleniumJavaSecurePay/master/docs/Steps.png" width="400">   
