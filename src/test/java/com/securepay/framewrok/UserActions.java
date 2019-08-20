@@ -35,7 +35,7 @@ public abstract class UserActions {
     }
 
     protected void click(WebElement element) {
-        fluentWait(element,20);
+        fluentWait(element, 20);
         element.click();
     }
 
@@ -57,7 +57,7 @@ public abstract class UserActions {
         };
     }
 
-    public void javascriptClick(){
+    public void javascriptClick() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('[class=\"r\"] a[href=\"https://www.securepay.com.au/\"]').click()");
     }
@@ -91,6 +91,11 @@ public abstract class UserActions {
     protected void waitUntilElementVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    protected void waitUntilElementClickAble(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     protected void mouseOver(WebElement element1, WebElement element2) {

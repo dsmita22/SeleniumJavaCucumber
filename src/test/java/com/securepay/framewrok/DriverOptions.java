@@ -3,6 +3,7 @@ package com.securepay.framewrok;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -32,10 +33,13 @@ abstract class DriverOptions {
         setChromeSystemProperty();
         ChromeOptions options = new ChromeOptions();
         //options.setHeadless(true);
-        options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--disable-popup-blocking");
-        //options.addArguments(setChromeOWASP());
-        //options.addArguments("--incognito");
+        options.addArguments("enable-automation");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--dns-prefetch-disable");
+        options.addArguments("--disable-gpu");
+        options.addArguments("enable-features=NetworkServiceInProcess");
+        //options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         return options;
     }
 
@@ -55,8 +59,6 @@ abstract class DriverOptions {
         profile.setPreference("network.proxy.type", 0);
         //options.setHeadless(true);
         options.setCapability(FirefoxDriver.PROFILE, profile);
-        //setFirefoxOWASP(options);
-//        logger.info("Firefox options added");
         return options;
     }
 
@@ -97,48 +99,6 @@ abstract class DriverOptions {
         } else {
             System.setProperty("webdriver.gecko.driver", "Driver/linux/geckodriver");
         }
-    }
-
-    /**
-     * logging preference
-     *
-     * @return prefs
-     */
-    private LoggingPreferences pref() {
-        LoggingPreferences pref = new LoggingPreferences();
-        pref.enable(LogType.BROWSER, Level.OFF);
-        pref.enable(LogType.CLIENT, Level.OFF);
-        pref.enable(LogType.DRIVER, Level.OFF);
-        pref.enable(LogType.PERFORMANCE, Level.OFF);
-        pref.enable(LogType.PROFILER, Level.OFF);
-        pref.enable(LogType.SERVER, Level.OFF);
-        logger.info("Performance capability added");
-        return pref;
-    }
-
-    /**
-     * Set firefox profile
-     * @param capabilities capability
-     * @return capability
-     */
-    private DesiredCapabilities fireFoxProfile(DesiredCapabilities capabilities) {
-        ProfilesIni allProfiles = new ProfilesIni();
-        FirefoxProfile myProfile = allProfiles.getProfile("WebDriver");
-        if (myProfile == null) {
-            File ffDir = new File(System.getProperty("user.dir") + File.separator + "ffProfile");
-            if (!ffDir.exists()) {
-                ffDir.mkdir();
-            }
-            myProfile = new FirefoxProfile(ffDir);
-        }
-        myProfile.setAcceptUntrustedCertificates(true);
-        myProfile.setAssumeUntrustedCertificateIssuer(true);
-        myProfile.setPreference("webdriver.load.strategy", "unstable");
-        if (capabilities == null) {
-            capabilities = new DesiredCapabilities();
-        }
-        capabilities.setCapability(FirefoxDriver.PROFILE, myProfile);
-        return capabilities;
     }
 
 }

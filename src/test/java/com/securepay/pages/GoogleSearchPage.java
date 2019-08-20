@@ -3,6 +3,7 @@ package com.securepay.pages;
 import com.securepay.framewrok.WebDriverParent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -18,10 +19,16 @@ public class GoogleSearchPage extends WebDriverParent {
     private WebElement searchArea;
 
     @FindBy(name = "btnK")
+    @CacheLookup
     private WebElement searchButton;
 
     @FindBy(css = "[class=\"r\"] a[href=\"https://www.securepay.com.au/\"]")
+    @CacheLookup
     private WebElement searchResult;
+
+    @FindBy(css = "a[data-description=\"Support\"][data-category=\"nav:li\"]")
+    @CacheLookup
+    private WebElement supportLink;
 
     public GoogleSearchPage(WebDriver driver) {
         super(driver);
@@ -45,8 +52,13 @@ public class GoogleSearchPage extends WebDriverParent {
     }
 
     public void selectSecurePay() {
-        waitUntilElementVisible(searchResult);
-        click(searchResult);
+        try {
+            waitUntilElementVisible(searchResult);
+            click(searchResult);
+        }
+        catch (TimeoutException timeOut){
+            waitUntilElementVisible(supportLink);
+        }
     }
 
 }
