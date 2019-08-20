@@ -6,19 +6,19 @@ import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterSuite;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@CucumberOptions(features = "src/test/resources/features", glue ={"tests.hooks","test.steps"})
+@CucumberOptions(
+        plugin = {"pretty", "json:target/report/cucumber2.json"},
+        strict = true,
+        features = {"src/test/java/com/securepay/features"},
+        glue = "com.securepay.steps"
+)
 public class AcceptanceTestSuite extends AbstractTestNGCucumberTests {
-    @DataProvider(parallel = true)
-    @Override
-    public Object[][] scenarios() {
-        return super.scenarios();
-    }
     private static Logger log = LogManager.getLogger(AcceptanceTestSuite.class);
 
     @AfterSuite
@@ -26,10 +26,11 @@ public class AcceptanceTestSuite extends AbstractTestNGCucumberTests {
         log.info("......Generating the Report....");
         File reportOutputDirectory = new File("target");
 
-        List<String> jsonFiles = new ArrayList<>();
-        File e = new File("target/jsonReports/cucumber.json");
-        Configuration configuration = new Configuration(reportOutputDirectory, "selenium");
+        String projectName = "SecurePay Test Project";
 
+        List<String> jsonFiles = new ArrayList<>();
+        File e = new File("target/report/cucumber2.json");
+        Configuration configuration = new Configuration(reportOutputDirectory, projectName);
         configuration.addClassifications("Platform", "Windows");
         configuration.addClassifications("Browser", "chrome");
         jsonFiles.add(e.getAbsolutePath());
