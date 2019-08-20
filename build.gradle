@@ -30,3 +30,21 @@ test {
     useTestNG()
     scanForTestClasses = false
 }
+
+task SecurePayTests(type: Test) {
+    useTestNG() {
+        outputDirectory = file("$project.buildDir/testngOutput")
+        useDefaultListeners = true
+        suiteXmlFiles << new File("src/test/java/suite/testng.xml")
+        setSuiteXmlFiles(suiteXmlFiles)
+    }
+    testLogging {
+        exceptionFormat "full"
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+        minGranularity 0
+    }
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    }
+}
