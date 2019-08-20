@@ -7,6 +7,11 @@ $ import project from intelij as a gradle project
 $ gradle clean
 $ gradle build
 $ gradle task SecurePayTests
+```   
+### Run Test in Docker container Selenium Grid   
+```sh
+$ docker-compose up -d
+# in build.gradle uncomment //dockerCompose.isRequiredBy(test) and environment "grid", "YES"
 ```
 ### Built With  
 
