@@ -100,6 +100,6 @@ public abstract class UserActions {
 
     protected void mouseOver(WebElement element1, WebElement element2) {
         Actions action = new Actions(driver);
-        action.moveToElement(element1).moveToElement(element2).click().build().perform();
+        action.moveToElement(element1).pause(Duration.ofSeconds(2)).moveToElement(element2).click().build().perform();
     }
 }

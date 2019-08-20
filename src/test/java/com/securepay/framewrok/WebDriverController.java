@@ -11,7 +11,8 @@ public class WebDriverController extends DriverOptions {
     public static WebDriver driver;
 
     public static void openBrowser(String url) throws MalformedURLException {
-        driver = new FirefoxDriver(getFirefoxOptions());
+//        driver = new FirefoxDriver(getFirefoxOptions());
+        driver = new ChromeDriver(getChromeOptions());
         driver.manage().window().maximize();
         driver.get(url);
         driver.manage().window().maximize();

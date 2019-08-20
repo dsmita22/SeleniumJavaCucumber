@@ -39,7 +39,7 @@ abstract class DriverOptions {
         options.addArguments("--dns-prefetch-disable");
         options.addArguments("--disable-gpu");
         options.addArguments("enable-features=NetworkServiceInProcess");
-        //options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         return options;
     }
 
@@ -57,7 +57,7 @@ abstract class DriverOptions {
         profile.setAcceptUntrustedCertificates(true);
         profile.setAssumeUntrustedCertificateIssuer(false);
         profile.setPreference("network.proxy.type", 0);
-        options.setHeadless(true);
+        //options.setHeadless(true);
         options.setCapability(FirefoxDriver.PROFILE, profile);
         return options;
     }
