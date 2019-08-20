@@ -40,16 +40,26 @@ public class GoogleSearchPage extends WebDriverParent {
         logger.info("Navigated to url");
     }
 
+    /**
+     * Search for item
+     * @param string item
+     */
     public void search(String string) {
         enter(searchArea, string);
         logger.info("Search function completed");
     }
 
+    /**
+     * Click on search button
+     */
     public void clickSearchButton() {
         submit(searchButton);
         logger.info("Clicked search button");
     }
 
+    /**
+     * Select Secure Pay
+     */
     public void selectSecurePay() {
         try {
             waitUntilElementVisible(searchResult);

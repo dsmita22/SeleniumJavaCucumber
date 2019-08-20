@@ -31,6 +31,9 @@ public class SecurePayPage extends WebDriverParent {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Navigate to Contact us page
+     */
     public void navigateToContactUs() {
         try {
             javascriptScroll();

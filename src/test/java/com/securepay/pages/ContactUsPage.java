@@ -53,6 +53,9 @@ public class ContactUsPage extends WebDriverParent {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Verify ContactUs PageLoad
+     */
     public void verifyContactUsPageLoad() {
         waitUntilElementClickAble(firstName);
         if (isDisplayed(firstName)) {
@@ -63,6 +66,9 @@ public class ContactUsPage extends WebDriverParent {
         }
     }
 
+    /**
+     * Enter ContactsUs Details
+     */
     public void enterContactUsDetails() {
         enter(firstName, faker.name().firstName());
         enter(lastName, faker.name().lastName());
