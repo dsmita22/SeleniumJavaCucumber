@@ -1,5 +1,8 @@
 package com.securepay.framewrok;
 
+import com.securepay.pages.GoogleSearchPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
@@ -10,17 +13,30 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class UserActions {
 
+    private Logger logger = LogManager.getLogger(GoogleSearchPage.class);
+
     public WebDriver driver;
 
     public UserActions(WebDriver driver) {
         this.driver = driver;
     }
 
+    /**
+     * Navigate to url
+     *
+     * @param url url
+     */
     protected void navigate(String url) {
         driver.navigate().to(url);
         driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
 
+    /**
+     * Fluent Wait
+     *
+     * @param element element
+     * @param timeout timeOut
+     */
     private void fluentWait(WebElement element, int timeout) {
         try {
             Wait wait = new FluentWait(driver)
@@ -30,76 +46,152 @@ public abstract class UserActions {
             wait.until(ExpectedConditions.visibilityOf(element));
 
         } catch (ElementNotVisibleException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 
+    /**
+     * Click
+     *
+     * @param element element
+     */
     protected void click(WebElement element) {
-        fluentWait(element, 20);
-        element.click();
+        try {
+            fluentWait(element, 20);
+            element.click();
+        } catch (ElementNotSelectableException ex) {
+            logger.error(ex);
+        }
     }
 
-    public void clickWhenReady(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();
+    /**
+     * Click when Ready
+     *
+     * @param element locator
+     * @param timeout timeout
+     */
+    public void clickWhenReady(WebElement element, int timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(element));
+            ele.click();
+        } catch (ElementNotInteractableException ex) {
+            logger.error(ex);
+        }
+
     }
 
-    public ExpectedCondition<WebElement> visibilityOfElementLocated(final By locator) {
-        return new ExpectedCondition<WebElement>() {
-            public WebElement apply(WebDriver driver) {
-                WebElement toReturn = driver.findElement(locator);
-                if (toReturn.isDisplayed()) {
-                    return toReturn;
-                }
-                return null;
-            }
-        };
+    /**
+     * Get Title
+     * @return String
+     */
+    protected String getTitle(){
+        return driver.getTitle();
+    }
+    /**
+     * javascript Scroll
+     */
+    protected void javascriptScroll() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,500)");
+        } catch (JavascriptException jex) {
+            logger.error(jex);
+        }
     }
 
-    public void javascriptClick() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('[class=\"r\"] a[href=\"https://www.securepay.com.au/\"]').click()");
-    }
-
-    public void click(WebElement element, int specifiedTimeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(specifiedTimeout));
-        ExpectedCondition<Boolean> elementIsClickable = arg0 -> {
-            try {
-                element.click();
-                return true;
-            } catch (Exception e) {
-                return false;
-            }
-        };
-        wait.until(elementIsClickable);
-    }
-
+    /**
+     * Submit
+     *
+     * @param element element
+     */
     protected void submit(WebElement element) {
-        element.submit();
+        try {
+            element.submit();
+        } catch (ElementNotInteractableException ex) {
+            logger.error(ex);
+        }
     }
 
+    /**
+     * Enter
+     *
+     * @param element element
+     * @param value   value
+     */
     protected void enter(WebElement element, String value) {
-        element.sendKeys(value);
+        try {
+            element.sendKeys(value);
+        } catch (ElementNotInteractableException ex) {
+            logger.error(ex);
+        }
     }
 
+    /**
+     * Select
+     *
+     * @param element element
+     * @param value   value
+     */
     protected void select(WebElement element, String value) {
-        Select select = new Select(element);
-        select.selectByValue(value);
+        try {
+            Select select = new Select(element);
+            select.selectByValue(value);
+        } catch (ElementNotSelectableException ex) {
+            logger.error(ex);
+        }
     }
 
+    /**
+     * Wait Until Element visible
+     *
+     * @param element element
+     */
     protected void waitUntilElementVisible(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+            wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (ElementNotVisibleException ex) {
+            logger.error(ex);
+        }
     }
 
+    /**
+     * Wait until element clickAble
+     *
+     * @param element element
+     */
     protected void waitUntilElementClickAble(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        } catch (ElementNotSelectableException ex) {
+            logger.error(ex);
+        }
     }
 
+    /**
+     * MouseOver
+     *
+     * @param element1 elementOne
+     * @param element2 elementTwo
+     */
     protected void mouseOver(WebElement element1, WebElement element2) {
-        Actions action = new Actions(driver);
-        action.moveToElement(element1).pause(Duration.ofSeconds(2)).moveToElement(element2).click().build().perform();
+        try {
+            Actions action = new Actions(driver);
+            action.moveToElement(element1).pause(Duration.ofSeconds(5)).moveToElement(element2).click().build().perform();
+        } catch (ElementNotInteractableException ex) {
+            logger.error(ex);
+        }
+    }
+
+    /**
+     * Is Displayed
+     *
+     * @param element element
+     * @return boolean
+     */
+    protected Boolean isDisplayed(WebElement element) {
+        return element.isDisplayed();
     }
 }

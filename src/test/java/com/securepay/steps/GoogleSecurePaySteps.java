@@ -39,19 +39,9 @@ public class GoogleSecurePaySteps extends WebDriverController {
         googleSearch.clickSearchButton();
     }
 
-    @Then("I should see {string}")
-    public void i_should_see(String string) {
-        System.out.println("Verified");
-    }
-
-    @When("I Click on the Link")
+    @When("I Click on the SecurePayLink")
     public void i_Click_on_the_Link() {
         googleSearch.selectSecurePay();
-    }
-
-    @Then("I should be navigate to SecurePay homePage")
-    public void i_should_be_navigate_to_SecurePay_homePage() {
-        System.out.println("Verified");
     }
 
     @When("I Click on ContactUs")
@@ -61,7 +51,7 @@ public class GoogleSecurePaySteps extends WebDriverController {
 
     @When("I should verify contact us page is loaded")
     public void i_should_verify_contact_us_page_is_loaded() {
-        System.out.println("Verified");
+        contactUsPage.verifyContactUsPageLoad();
     }
 
     @Then("I should be able to fill the form")

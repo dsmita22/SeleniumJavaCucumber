@@ -37,26 +37,25 @@ public class GoogleSearchPage extends WebDriverParent {
 
     public void navigateTo(String url) {
         navigate(url);
+        logger.info("Navigated to url");
     }
 
     public void search(String string) {
-        try {
-            enter(searchArea, string);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        enter(searchArea, string);
+        logger.info("Search function completed");
     }
 
     public void clickSearchButton() {
         submit(searchButton);
+        logger.info("Clicked search button");
     }
 
     public void selectSecurePay() {
         try {
             waitUntilElementVisible(searchResult);
             click(searchResult);
-        }
-        catch (TimeoutException timeOut){
+            logger.info("Clicked on search result");
+        } catch (TimeoutException timeOut) {
             waitUntilElementVisible(supportLink);
         }
     }

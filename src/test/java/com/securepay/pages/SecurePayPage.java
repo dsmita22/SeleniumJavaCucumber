@@ -3,6 +3,7 @@ package com.securepay.pages;
 import com.securepay.framewrok.WebDriverParent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,11 +33,12 @@ public class SecurePayPage extends WebDriverParent {
 
     public void navigateToContactUs() {
         try {
+            javascriptScroll();
             mouseOver(supportLink, contactUsLink);
+            logger.info("Navigated to contact us page");
         } catch (TimeoutException timeOut) {
             waitUntilElementVisible(firstName);
         }
-
     }
 
 }

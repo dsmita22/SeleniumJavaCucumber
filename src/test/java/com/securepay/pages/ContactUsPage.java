@@ -48,19 +48,30 @@ public class ContactUsPage extends WebDriverParent {
     @CacheLookup
     private WebElement submit;
 
-    public ContactUsPage(WebDriver driver){
+    public ContactUsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void enterContactUsDetails(){
-        enter(firstName,faker.name().firstName());
-        enter(lastName,faker.name().lastName());
-        enter(email,faker.internet().emailAddress());
-        enter(phoneNumber,"0" + RandomStringUtils.randomNumeric(9));
-        enter(webSite,faker.company().url());
-        enter(companyName,faker.company().name());
-        select(reason,"Support");
+    public void verifyContactUsPageLoad() {
+        waitUntilElementClickAble(firstName);
+        if (isDisplayed(firstName)) {
+            logger.info("Page loaded verified");
+        } else {
+            logger.error("Page not loaded");
+            throw new RuntimeException("Page not loaded");
+        }
+    }
+
+    public void enterContactUsDetails() {
+        enter(firstName, faker.name().firstName());
+        enter(lastName, faker.name().lastName());
+        enter(email, faker.internet().emailAddress());
+        enter(phoneNumber, "0" + RandomStringUtils.randomNumeric(9));
+        enter(webSite, faker.company().url());
+        enter(companyName, faker.company().name());
+        select(reason, "Support");
+        logger.info("All contact details entered");
     }
 
 }
