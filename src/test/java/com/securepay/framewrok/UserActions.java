@@ -88,9 +88,9 @@ public abstract class UserActions {
         select.selectByValue(value);
     }
 
-    protected void waitUntilElementDisplayed(WebElement element) {
+    protected void waitUntilElementVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     protected void mouseOver(WebElement element1, WebElement element2) {

@@ -28,7 +28,7 @@ public class GoogleSearchPage extends WebDriverParent {
         PageFactory.initElements(driver, this);
     }
 
-    public void navigateTo(String url){
+    public void navigateTo(String url) {
         navigate(url);
     }
 
@@ -44,9 +44,9 @@ public class GoogleSearchPage extends WebDriverParent {
         submit(searchButton);
     }
 
-    public void selectSecurePay(){
-        waitUntilElementDisplayed(searchResult);
-       javascriptClick();
+    public void selectSecurePay() {
+        waitUntilElementVisible(searchResult);
+        click(searchResult);
     }
 
 }
