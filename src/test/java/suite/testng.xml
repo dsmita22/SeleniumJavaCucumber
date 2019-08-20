@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="End To End User Journey" allow-return-values="true" parallel="false" thread-count="2">
-    <parameter name="grid" value="NO"/>
-    <parameter name="perf" value="NO"/>
+<suite name="SecurePay WebUi Test" allow-return-values="true" parallel="false" thread-count="2">
 
-    <test name="E2E Tests Web Firefox">
-        <parameter name="browser" value="chrome"/>
+    <test name="Tests Web Firefox">
         <classes>
             <class name="com.securepay.AcceptanceTestSuite"/>
         </classes>
