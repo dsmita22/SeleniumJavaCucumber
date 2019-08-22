@@ -40,22 +40,26 @@ public class GoogleSecurePaySteps extends WebDriverController {
     }
 
     @When("I Click on the SecurePayLink")
-    public void i_Click_on_the_Link() {
+    public void i_Click_on_the_Link()
+    {
         googleSearch.selectSecurePay();
     }
 
     @When("I Click on ContactUs")
     public void i_Click_on_ContactUs() {
+
         securePay.navigateToContactUs();
     }
 
     @When("I should verify contact us page is loaded")
-    public void i_should_verify_contact_us_page_is_loaded() {
+    public void i_should_verify_contact_us_page_is_loaded()
+    {
         contactUsPage.verifyContactUsPageLoad();
     }
 
     @Then("I should be able to fill the form")
-    public void i_should_be_able_to_fill_the_form() {
+    public void i_should_be_able_to_fill_the_form()
+    {
         contactUsPage.enterContactUsDetails();
     }
 }

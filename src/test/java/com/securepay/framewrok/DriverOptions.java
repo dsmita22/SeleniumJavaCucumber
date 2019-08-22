@@ -32,7 +32,7 @@ abstract class DriverOptions {
     protected static ChromeOptions getChromeOptions() {
         setChromeSystemProperty();
         ChromeOptions options = new ChromeOptions();
-        //options.setHeadless(true);
+        options.setHeadless(true);
         options.addArguments("enable-automation");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-extensions");
@@ -89,6 +89,7 @@ abstract class DriverOptions {
             System.setProperty("webdriver.chrome.driver", "Driver/linux/chromedriver");
         }
     }
+
 
     /**
      * Set firefox system property

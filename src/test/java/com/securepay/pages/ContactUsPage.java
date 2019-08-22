@@ -79,5 +79,5 @@ public class ContactUsPage extends WebDriverParent {
         select(reason, "Support");
         logger.info("All contact details entered");
     }
-
+// NEW BRANCH
 }
