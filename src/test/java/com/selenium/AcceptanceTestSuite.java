@@ -1,4 +1,4 @@
-package com.securepay;
+package com.selenium;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;

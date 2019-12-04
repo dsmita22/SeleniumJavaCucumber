@@ -1,4 +1,4 @@
-package com.securepay.framewrok;
+package com.selenium.framewrok;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

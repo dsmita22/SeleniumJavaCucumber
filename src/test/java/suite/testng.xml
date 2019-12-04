@@ -4,7 +4,7 @@
 
     <test name="Tests Web Firefox">
         <classes>
-            <class name="com.securepay.AcceptanceTestSuite"/>
+            <class name="com.selenium.AcceptanceTestSuite"/>
         </classes>
     </test>
 

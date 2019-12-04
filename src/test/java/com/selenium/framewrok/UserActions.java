@@ -1,6 +1,6 @@
-package com.securepay.framewrok;
+package com.selenium.framewrok;
 
-import com.securepay.pages.GoogleSearchPage;
+import com.selenium.pages.GoogleSearchPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;

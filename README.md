@@ -1,7 +1,7 @@
-# SecurePay Java BDD Automation Project   
+# Selenium Java BDD Automation Project   
 ### Getting Started
 ```sh
-$ git clone https://github.com/dsmita22/SeleniumJavaSecurePay.git
+$ git clone https://github.com/dsmita22/SeleniumJavaCucumber.git
 $ cd SeleniumJavaSecurePay
 $ import project from intelij as a gradle project
 $ gradle clean

@@ -1,9 +1,9 @@
-package com.securepay.steps;
+package com.selenium.steps;
 
-import com.securepay.framewrok.WebDriverController;
-import com.securepay.pages.ContactUsPage;
-import com.securepay.pages.GoogleSearchPage;
-import com.securepay.pages.SecurePayPage;
+import com.selenium.framewrok.WebDriverController;
+import com.selenium.pages.ContactUsPage;
+import com.selenium.pages.GoogleSearchPage;
+import com.selenium.pages.SecurePayPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;

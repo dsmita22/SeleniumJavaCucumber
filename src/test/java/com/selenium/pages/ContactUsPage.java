@@ -1,7 +1,7 @@
-package com.securepay.pages;
+package com.selenium.pages;
 
 import com.github.javafaker.Faker;
-import com.securepay.framewrok.WebDriverParent;
+import com.selenium.framewrok.WebDriverParent;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
